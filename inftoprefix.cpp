@@ -2,8 +2,8 @@
 #include<ctype.h>
 #include<string.h>
 #define MAX 100
-char pf[MAX],inf[MAX];
-int stack[MAX],top=-1;
+char stack[MAX],pf[MAX],inf[MAX];
+int top=-1;
 int prec(char x)
 {
  switch(x)
