@@ -57,7 +57,8 @@ int main()
 			   push(inf[i]);
 			}
 			PF[j]='\0';
-		}   
+		}
+	printf("The Postfix exp is:");
     	puts(PF);
 	return 0;												
 }
