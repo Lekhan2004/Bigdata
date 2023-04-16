@@ -4,28 +4,22 @@
 #define MAX 100
 char stack[MAX][MAX];
 int top = -1;
-
 void push(char* c)
 {
     top++;
     strcpy(stack[top], c);
 }
-
 char* pop()
 {
     return stack[top--];
 }
-
-int isOperator(char ch)
+int isoperator(char ch)
 {
     if (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^')
         return 1;
     else
         return 0;
 }
-
-
-
 int main()
 {
     char pre[MAX];
@@ -39,8 +33,7 @@ strcpy(rev,strrev(pre));
     {
        str[0]=rev[i];
         	str[1]='\0';
-
-        if (isalpha(rev[i]))
+        if (isoperator(rev[i]))
         {
             push(str);
         }
@@ -48,15 +41,13 @@ strcpy(rev,strrev(pre));
         {
           strcpy(op2, pop());
             strcpy(op1, pop());
-
             strcpy(inf, op2);
             strcat(inf, str);
             strcat(inf, op1);
-
             push(inf);
         }
     }
-   printf("The Prefix Expression is : %s\n", stack[top]);
+   printf("The Infix Expression is : %s\n", stack[top]);
     return 0;
 }
 
