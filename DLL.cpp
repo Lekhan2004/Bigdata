@@ -122,7 +122,7 @@ void insert(){
 		case 2:insertl();break;
 		case 3:insertpos();break;
 		default:printf("wrong choice");
-	}printf("continue y/n\n");
+	}printf("continue insertion y/n\n");
 	fflush(stdin);
 	ch=getchar();
 	}while(ch=='y');
@@ -249,7 +249,7 @@ int main(){
 		case 5:display(first);break;
 		case 6:c=count();printf("No of Elements is %d",c);break;
 default:printf("wrong choice");
-	}printf("\ncontinue y/n:");
+	}printf("\ncontinue at main y/n:");
 	fflush(stdin);
 	ch=getchar();
 	}
