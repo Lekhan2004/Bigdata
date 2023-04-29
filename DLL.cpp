@@ -35,11 +35,8 @@ void insertf(){
 	scanf("%d",&nn->x);
 	if(first==NULL){
 		first=nn;
-		temp=nn;
-		temp1=nn;
-		temp2=nn;
-		temp1->link=NULL;
-		temp2->rlink=NULL;
+		first->link=NULL;
+		first->rlink=NULL;
 		last=nn;
 	}
 	else{
@@ -57,11 +54,8 @@ void insertl(){
 	scanf("%d",&nn->x);
 	if(first==NULL){
 		first=nn;
-		temp=nn;
-		temp1=nn;
-		temp2=nn;
-		temp1->link=NULL;
-		temp2->rlink=NULL;
+		first->link=NULL;
+		first->rlink=NULL;
 		last=nn;
 	}
 	else{
@@ -77,7 +71,7 @@ int count(){
 	if(first==NULL)
 	return(cnt);
 	else{temp=first;
-	while(temp!=NULL)
+	while(temp->rlink!=NULL)
 	{cnt++;
 	temp=temp->rlink;
 	}return(cnt);
@@ -122,7 +116,7 @@ void insert(){
 		case 2:insertl();break;
 		case 3:insertpos();break;
 		default:printf("wrong choice");
-	}printf("continue insertion y/n\n");
+	}printf("continue y/n\n");
 	fflush(stdin);
 	ch=getchar();
 	}while(ch=='y');
@@ -230,7 +224,7 @@ int search(void)
 	}
 }
 int main(){
-	int choice,f,c;
+	int choice,f;
 	char ch='y';
 	while(ch=='y'){printf("select\n 1.Create 2.Insert 3.Delete 4.Search 5.Display\n");
 	scanf("%d",&choice);
@@ -247,9 +241,8 @@ int main(){
 					 printf("element found");
 					 break;
 		case 5:display(first);break;
-		case 6:c=count();printf("No of Elements is %d",c);break;
 default:printf("wrong choice");
-	}printf("\ncontinue at main y/n:");
+	}printf("\ncontinue y/n:");
 	fflush(stdin);
 	ch=getchar();
 	}
