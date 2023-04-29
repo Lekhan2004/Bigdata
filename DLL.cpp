@@ -77,7 +77,7 @@ int count(){
 	if(first==NULL)
 	return(cnt);
 	else{temp=first;
-	while(temp->rlink!=NULL)
+	while(temp!=NULL)
 	{cnt++;
 	temp=temp->rlink;
 	}return(cnt);
@@ -230,7 +230,7 @@ int search(void)
 	}
 }
 int main(){
-	int choice,f;
+	int choice,f,c;
 	char ch='y';
 	while(ch=='y'){printf("select\n 1.Create 2.Insert 3.Delete 4.Search 5.Display\n");
 	scanf("%d",&choice);
@@ -247,6 +247,7 @@ int main(){
 					 printf("element found");
 					 break;
 		case 5:display(first);break;
+		case 6:c=count();printf("No of Elements is %d",c);break;
 default:printf("wrong choice");
 	}printf("\ncontinue y/n:");
 	fflush(stdin);
