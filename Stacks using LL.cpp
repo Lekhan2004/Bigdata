@@ -23,7 +23,7 @@ int pop(){
 void display(){
 	temp =top;
 	while(temp!=NULL){
-	printf("%d",&temp->x);
+	printf("%d",temp->x);
 	temp=temp->link;
 	}
 }
