@@ -37,7 +37,7 @@ void rev(struct node*f){
       temp3=temp2;
       f->link=NULL;
    
-      while(temp1!=NULL){
+      while(temp1!=last){
       	temp3=temp3->link;
       	temp2->link=temp1;
       	temp1=temp2;
@@ -54,10 +54,8 @@ void display(void){
 	temp=temp->link;
 }
 }
-void rrevdisplay(struct node*f){
-
-	temp=f;
-	
+void revdisplay(){
+	temp=last;
 	printf("Content in the Reverse Linked List is");
 	do
 {
@@ -68,9 +66,8 @@ void rrevdisplay(struct node*f){
 main (){
 //	int a;
 	first=create(first);
-	//display();
+	display();
 	rev(first);
-	rrevdisplay(first);
+	revdisplay();
 	
 }
-
