@@ -4,13 +4,39 @@ struct Node {
     int coef;
     int exp;
     struct Node* next;
-};
+}*nn,*temp;
 struct Node* create(int coef, int exp) {
-    struct Node* nn = (struct Node*) malloc(sizeof(struct Node));
+    nn = (struct Node*) malloc(sizeof(struct Node));
     nn->coef = coef;
     nn->exp = exp;
     nn->next = NULL;
     return nn;
+}
+struct Node* createpoly(struct Node *f)
+{
+	char ch;
+	f=NULL;
+	do {
+		nn=(struct Node*)malloc(sizeof(struct Node));
+		printf("Enter COEF\n");
+		scanf("%d",&nn->coef);
+		printf("Enter EXP");
+		scanf("%d",&nn->exp);
+		if(f==NULL)
+		{f=nn;
+		temp=nn;
+		}
+		else
+		{
+			temp->next=nn;
+			temp=nn;
+		}
+		printf("Wanna Continue y/n\n");
+		fflush(stdin);
+		ch=getchar();
+	}while(ch=='y');
+	temp->next=NULL;
+	return f;
 }
 struct Node* add(struct Node* p1, struct Node* p2) {
     struct Node*a = NULL, *b =NULL;
@@ -74,12 +100,8 @@ void print(struct Node* p) {
 }
 int main() {
     struct Node* p1,* p2, *sum;
-    p1 = create(5, 2);
-    p1->next = create(3, 1);
-    p1->next->next = create(1, 0);
-    p2 = create(4, 3);
-    p2->next = create(2, 2);
-    p2->next->next = create(1, 1);
+    p1 = createpoly(p1);
+    p2 = createpoly(p2);
     sum = add(p1,p2);
     printf("pOLY 1");
     print(p1);
