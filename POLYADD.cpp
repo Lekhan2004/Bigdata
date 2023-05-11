@@ -1,75 +1,68 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 struct Node {
     int coef;
     int exp;
     struct Node* next;
 };
-
-typedef struct Node* Poly;
-
-Poly createNode(int coef, int exp) {
-    Poly nn = (Poly) malloc(sizeof(struct Node));
+struct Node* create(int coef, int exp) {
+    struct Node* nn = (struct Node*) malloc(sizeof(struct Node));
     nn->coef = coef;
     nn->exp = exp;
     nn->next = NULL;
     return nn;
 }
-
-Poly addPolynomial(Poly p1, Poly p2) {
-    Poly head = NULL, tail = NULL;
+struct Node* add(struct Node* p1, struct Node* p2) {
+    struct Node*a = NULL, *b =NULL;
     while (p1 != NULL && p2 != NULL) {
         if (p1->exp > p2->exp) {
-            if (tail == NULL) {
-                head = tail = createNode(p1->coef, p1->exp);
+            if (b == NULL) {
+                a = b = create(p1->coef, p1->exp);
             } else {
-                tail->next = createNode(p1->coef, p1->exp);
-                tail = tail->next;
+                b->next = create(p1->coef, p1->exp);
+                b = b->next;
             }
             p1 = p1->next;
         } else if (p1->exp < p2->exp) {
-            if (tail == NULL) {
-                head = tail = createNode(p2->coef, p2->exp);
+            if (b == NULL) {
+                a = b = create(p2->coef, p2->exp);
             } else {
-                tail->next = createNode(p2->coef, p2->exp);
-                tail = tail->next;
+                b->next = create(p2->coef, p2->exp);
+                b = b->next;
             }
             p2 = p2->next;
         } else {
             int coefSum = p1->coef + p2->coef;
-            if (tail == NULL) {
-                head = tail = createNode(coefSum, p1->exp);
+            if (b == NULL) {
+                a = b = create(coefSum, p1->exp);
             } else {
-                tail->next = createNode(coefSum, p1->exp);
-                tail = tail->next;
+                b->next = create(coefSum, p1->exp);
+                b = b->next;
             }
             p1 = p1->next;
-            p2 = p2->next;
-        }
+            p2 = p2->next; }
     }
     while (p1 != NULL) {
-        if (tail == NULL) {
-            head = tail = createNode(p1->coef, p1->exp);
+        if (b == NULL) {
+            a = b = create(p1->coef, p1->exp);
         } else {
-            tail->next = createNode(p1->coef, p1->exp);
-            tail = tail->next;
+            b->next = create(p1->coef, p1->exp);
+            b = b->next;
         }
         p1 = p1->next;
     }
     while (p2 != NULL) {
-        if (tail == NULL) {
-            head = tail = createNode(p2->coef, p2->exp);
+        if (b == NULL) {
+            a = b = create(p2->coef, p2->exp);
         } else {
-            tail->next = createNode(p2->coef, p2->exp);
-            tail = tail->next;
+            b->next = create(p2->coef, p2->exp);
+            b = b->next;
         }
         p2 = p2->next;
     }
-    return head;
+    return a;
 }
-
-void printPolynomial(Poly p) {
+void print(struct Node* p) {
     while (p != NULL) {
         printf("%dx^%d ", p->coef, p->exp);
         if (p->next != NULL) {
@@ -79,28 +72,20 @@ void printPolynomial(Poly p) {
     }
     printf("\n");
 }
-
 int main() {
-    Poly p1, p2, sum;
-    p1 = createNode(5, 2);
-    p1->next = createNode(3, 1);
-    p1->next->next = createNode(1, 0);
-
-    p2 = createNode(4, 3);
-    p2->next = createNode(2, 2);
-    p2->next->next = createNode(1, 1);
-
-    sum = addPolynomial(p1, p2);
-
-    printf("p1: ");
-    printPolynomial(p1);
-
-    printf("p2: ");
-    printPolynomial(p2);
-
-    printf("sum: ");
-    printPolynomial(sum);
-
+    struct Node* p1,* p2, *sum;
+    p1 = create(5, 2);
+    p1->next = create(3, 1);
+    p1->next->next = create(1, 0);
+    p2 = create(4, 3);
+    p2->next = create(2, 2);
+    p2->next->next = create(1, 1);
+    sum = add(p1,p2);
+    printf("pOLY 1");
+    print(p1);
+    printf("pOLY2: ");
+    print(p2);
+    printf("Ress= ");
+    print(sum);
     return 0;
 }
-
