@@ -5,13 +5,6 @@ struct Node {
     int exp;
     struct Node* next;
 }*nn,*temp;
-/*struct Node* create(int coef, int exp) {
-    nn = (struct Node*) malloc(sizeof(struct Node));
-    nn->coef = coef;
-    nn->exp = exp;
-    nn->next = NULL;
-    return nn;
-}*/
  struct Node* createpoly(struct Node *f)
 {
 	char ch;
@@ -39,7 +32,6 @@ struct Node {
 	return f;
 }
 struct Node *multiply(struct Node *p1,struct Node*p2){
-	int p,q,r,s;
 	struct Node *b=NULL,*t;
 	t=p2;
 	while(p1!=	NULL){
@@ -53,12 +45,9 @@ struct Node *multiply(struct Node *p1,struct Node*p2){
 			else {
 			temp->next=nn;
 			temp=temp->next;
-			}p=p1->coef;
-			q=p1->exp;
-			r=p2->coef;
-			s=p2->exp;
-			nn->coef=p*r;
-			nn->exp=q+s;
+			}
+			nn->coef=p1->coef*p2->coef;
+			nn->exp=p1->exp+p2->exp;
 			nn->next=NULL;
 			p2=p2->next;
 		}
@@ -77,8 +66,26 @@ void print(struct Node* p) {
     }
     printf("\n");
 }
+struct Node * removelp(struct Node*v){
+	struct Node*t1=v,*t2,*t;
+	while(t1!=NULL){
+		t2=t1->next;
+		while(t2!=NULL){
+			if(t1->exp==t2->exp)
+			{t1->coef+=t2->coef;
+			t=t2;
+			t2=t->next;
+			t1->next=t2;			
+			free(t);
+			}
+			else
+			t2=t2->next;
+				}
+				t1=t1->next;
+			}return v;
+}
 int main() {
-    struct Node* p1,* p2, *res;
+    struct Node* p1,* p2, *res,*r2;
     p1 = createpoly(p1);
     p2 = createpoly(p2);
     res = multiply(p1,p2);
@@ -86,7 +93,8 @@ int main() {
     print(p1);
     printf("pOLY2: ");
     print(p2);
+    r2=removelp(res);
  	printf("Ress= ");
-    print(res);
+    print(r2);
     return 0;
 }
