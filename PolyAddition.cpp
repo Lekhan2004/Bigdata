@@ -23,14 +23,9 @@ struct Node* createpoly(struct Node *f)
 		printf("Enter EXP");
 		scanf("%d",&nn->exp);
 		if(f==NULL)
-		{f=nn;
-		temp=nn;
-		}
-		else
-		{
-			temp->next=nn;
+		f=nn;
+		else temp->next=nn;
 			temp=nn;
-		}
 		printf("Wanna Continue y/n\n");
 		fflush(stdin);
 		ch=getchar();
@@ -59,9 +54,9 @@ struct Node* add(struct Node* p1, struct Node* p2) {
             p2 = p2->next;
         } else {
             int coefSum = p1->coef + p2->coef;
-            if (b == NULL) {
+            if (b == NULL) 
                 a = b = create(coefSum, p1->exp);
-            } else {
+             else {
                 b->next = create(coefSum, p1->exp);
                 b = b->next;
             }
@@ -69,18 +64,18 @@ struct Node* add(struct Node* p1, struct Node* p2) {
             p2 = p2->next; }
     }
     while (p1 != NULL) {
-        if (b == NULL) {
+        if (b == NULL) 
             a = b = create(p1->coef, p1->exp);
-        } else {
+        else {
             b->next = create(p1->coef, p1->exp);
             b = b->next;
         }
         p1 = p1->next;
     }
     while (p2 != NULL) {
-        if (b == NULL) {
+        if (b == NULL) 
             a = b = create(p2->coef, p2->exp);
-        } else {
+        else {
             b->next = create(p2->coef, p2->exp);
             b = b->next;
         }
@@ -91,12 +86,10 @@ struct Node* add(struct Node* p1, struct Node* p2) {
 void print(struct Node* p) {
     while (p != NULL) {
         printf("%dx^%d ", p->coef, p->exp);
-        if (p->next != NULL) {
-            printf("+ ");
-        }
+        if (p->next != NULL) 
+            printf("+ ");        
         p = p->next;
-    }
-    printf("\n");
+    } printf("\n");
 }
 int main() {
     struct Node* p1,* p2, *sum;
