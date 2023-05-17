@@ -3,12 +3,12 @@
 struct node{
 	int x;
 	struct node *link;
-}*first=NULL,*nn,*last,*temp;
+}*first=NULL,*nn,*temp;
 struct node* create(struct node *f)
 {
 	char ch;
-	do {
-		nn=(struct node*)malloc(sizeof(struct node));
+	do{
+	 	nn=(struct node*)malloc(sizeof(struct node));
 		printf("Enter data\n");
 		scanf("%d",&nn->x);
 		if(f==NULL)
@@ -24,8 +24,8 @@ struct node* create(struct node *f)
 		fflush(stdin);
 		ch=getchar();
 	}while(ch=='y');
-	temp->link=NULL;
-	last=nn;
+	temp->link=first;
+	//last=nn;
 	return f;
 }
 int count(){
@@ -34,7 +34,7 @@ int count(){
 	if(first==NULL)
 	return cnt;
 	else{
-	while(temp->link!=NULL){
+	while(temp->link!=first){
 		temp=temp->link;
 		cnt++;
 	}
@@ -49,7 +49,8 @@ void deletebeg(void){
 		t=first;
 		first=t->link;
 	}
-	t->link=NULL;
+	//t->link=NULL;
+	
 	free(t);
 }
 void deleteend(void){
@@ -109,7 +110,7 @@ void deleteall(void)
 			default : printf("Wrong Choice");
 		}printf("Continue? y/n");
 		fflush(stdin);
-		ch=getchar();
+		--------ch=getchar();
 	}while(ch=='y');
 }
 void insertbeg(){
@@ -228,14 +229,5 @@ main(){
 		ch=getchar();
 	}while(ch=='y');
 	}
-
-
-
-
-
-
-
-
-
 
 
