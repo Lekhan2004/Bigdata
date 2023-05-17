@@ -16,14 +16,14 @@ int pop(){
 	t=top;
 	e=t->x;
 		top=top->link;
-		top->link=NULL;
+		
 		free(t);
 		return e;
 }
 void display(){
 	temp =top;
 	while(temp!=NULL){
-	printf("%d",temp->x);
+	printf("%d\n",temp->x);
 	temp=temp->link;
 	}
 }
@@ -47,4 +47,3 @@ main(){
 		}while(ch==1);
 		
 	}
-
