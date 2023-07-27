@@ -22,17 +22,17 @@ int binarysearch(int a[],int n,int x){
 }
 int bsrec(int a[],int lb,int ub,int x)
 {
- 		int y;
+ 		
  		 if (lb > ub) {
         return 0;
     }
     int mid=lb+ub/2;
 	if(x<a[mid])
 		{
-		y=	bsrec(a,lb,mid-1,x);
+		return bsrec(a,lb,mid-1,x);
 		}
 		else if(x>a[mid]){
-		y=	bsrec(a,mid+1,ub,x);
+		return bsrec(a,mid+1,ub,x);
 		}
 		else if(x==a[mid]){
 			return 1;
