@@ -2,15 +2,14 @@
 #include <stdlib.h>
 
 int n;
-int h1(int ele){
+int hash(int ele){
 	return ele%n;
 }
 void insert(int ele,int hashtab[]){
-	int x,i,hkey;
-	x=ele%n;
+	int i,hkey;
 	for(i=0;i<n;i++)  
    {  
-    hkey=(x+i)%n;  
+    hkey=(hash(ele)+i)%n;  
     if(hashtab[hkey] == -1)  
     {  
      hashtab[hkey]=ele;  
