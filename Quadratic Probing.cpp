@@ -2,15 +2,14 @@
 #include <stdlib.h>
 
 int n;
-int h1(int ele){
+int hash(int ele){
 	return ele%n;
 }
 void insert(int ele,int hashtab[]){
-	int x,i,hkey;
-	x=ele%n;
+	int i,hkey;
 	for(i=0;i<n;i++)  
    {  
-    hkey=(x+(i*i))%n;  
+    hkey=(hash(ele)+(i*i))%n;  
     if(hashtab[hkey] == -1)  
     {  
      hashtab[hkey]=ele;  
@@ -24,7 +23,7 @@ void search(int ele,int hashtab[]){
 	int i,hkey;
 	for(i=0;i<n;i++)  
    {  
-    hkey=(ele%n+(i))%n;  
+    hkey=(ele%n+(i*i))%n;  
     if(hashtab[hkey] == -1)  
     {  
 	printf("Not Found\n"); 
