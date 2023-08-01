@@ -2,12 +2,12 @@
 #include <stdlib.h>
 
 int a[10][10], cs[10], f = 0, r = -1, v, e;
-char arr[10], *names; 
+char queue[10], *names; 
 void insert(char key) {
-    arr[++r] = key;
+    queue[++r] = key;
 }
 char del() {
-    return arr[f++];
+    return queue[f++];
 }
 void bfs(int a[][10], int n) {
     char ver;
