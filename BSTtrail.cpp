@@ -23,31 +23,39 @@ int height(struct node *f){
 	return 0;
 	return max(height(f->l),height(f->r))+1;
 }
-struct node *del(struct node *f,int ele)
-{
-	struct node *tmp1;
-	tmp1=f;
-	if(f==NULL)return NULL;
-	if(ele<f->x)
-	 f->l=del(f->l,ele);
-	else if(ele>f->x)
-	 f->r=del(f->r,ele);
-	else {
-		if(f->l==NULL){
-			tmp1=f->r;
-			free(tmp1);
-			return tmp1;
-		}
-		else if(f->r==NULL){
-			tmp1=f->l;
-			free(tmp1);
-			return tmp1;
-		}
-	}
-	 
+struct node *insucc(struct node *f) {
+    while (f->l != NULL)
+        f = f->l;
+    return f;
 }
+
+struct node *del(struct node *f, int ele) {
+    if (f == NULL) return f;
+
+    if (ele < f->x)
+        f->l = del(f->l, ele);
+    else if (ele > f->x)
+        f->r = del(f->r, ele);
+    else {
+        if (f->l == NULL) {
+            struct node *tmp = f->r;
+            free(f);
+            return tmp;
+        } else if (f->r == NULL) {
+            struct node *tmp = f->l;
+            free(f);
+            return tmp;
+        }
+        struct node *tmp = insucc(f->r);
+        f->x = tmp->x;
+        f->r = del(f->r, tmp->x);
+    }
+    return f;
+}
+
+	 
 struct node *insert(struct node *f,int ele)//Recursive
-{
+   { 
 	if(f==NULL){
 		return newnode(ele);}
 	if(ele<f->x)
@@ -155,7 +163,7 @@ int main(){
 				   break;
 			case 2:printf("Enter the node you want to delete\n");
 				   scanf("%d",&ele);
-				   //root=del(ele);
+				   root=del(root,ele);
 				   break; 
 			case 3:printf("Inorder Traversal of the above tree is:\n");
 				   inorder(root);
